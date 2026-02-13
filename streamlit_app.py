@@ -183,7 +183,18 @@ def main():
         # Projection table
         st.subheader("Year-by-Year Projection")
         df_projection = build_projection_table(current_value, annual_rate, monthly_contribution, years)
-        st.dataframe(df_projection, use_container_width=True, hide_index=True)
+        st.dataframe(
+            df_projection,
+            use_container_width=True,
+            hide_index=True,
+            column_config={
+                "Year": st.column_config.NumberColumn("Year", format="%d"),
+                "Starting Balance": st.column_config.NumberColumn("Starting Balance", format="$%,.2f"),
+                "Contributions": st.column_config.NumberColumn("Contributions", format="$%,.2f"),
+                "Growth": st.column_config.NumberColumn("Growth", format="$%,.2f"),
+                "Ending Balance": st.column_config.NumberColumn("Ending Balance", format="$%,.2f"),
+            },
+        )
 
         # Chart
         st.subheader("Growth Over Time")

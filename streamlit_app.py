@@ -224,6 +224,54 @@ def main():
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.spreadsheet",
         )
 
+    # ---- Notes & Assumptions ----
+    st.divider()
+    st.header("Notes & Assumptions")
+
+    st.subheader("Assumptions")
+    st.markdown("""
+- **Fixed annual return** — Each portfolio type uses a single estimated annual return rate
+  applied consistently every year. In reality, market returns fluctuate year to year.
+- **Monthly compounding** — Growth is compounded monthly (annual rate / 12 applied each
+  month). This is a common approximation but actual compounding may differ by account type.
+- **Constant contributions** — Monthly contributions are assumed to stay the same for the
+  entire projection period. No adjustments are made for raises, reduced income, or pauses.
+- **No taxes or fees** — The projections do not account for capital gains taxes, income
+  taxes on withdrawals, fund expense ratios, advisory fees, or trading costs.
+- **No inflation adjustment** — All values are shown in today's dollars. The target value
+  and ending balances are nominal, not adjusted for purchasing power over time.
+- **No withdrawals** — The model assumes you do not withdraw any funds before reaching
+  your goal.
+- **Estimated return rates** — The default rates are rough long-term historical averages
+  and are not guaranteed:
+    - Conservative (60/40): 6%
+    - Diversified Global: 8%
+    - International Diversified: 7%
+    - Real Estate: 9%
+    - Aggressive Growth: 10%
+""")
+
+    st.subheader("How to Use Import & Export")
+    st.markdown("""
+**Exporting results to Excel:**
+1. Enter your portfolio details and click **Calculate**.
+2. After results appear, scroll down to the **Export Results** section.
+3. Click **Download as Excel** to save a `.xlsx` file to your computer.
+4. The file contains two sheets:
+    - **Summary** — Your inputs (portfolio type, current value, target value,
+      monthly contribution, estimated return, and years to goal).
+    - **Projection** — The full year-by-year breakdown table.
+
+**Importing a previous projection:**
+1. Open the **sidebar** (click the `>` arrow at the top-left if it is collapsed).
+2. Under **Import from Excel**, click **Browse files** and select a previously
+   exported `.xlsx` file.
+3. The app reads the **Summary** sheet and pre-fills the input fields (current value,
+   target value, monthly contribution, and portfolio type) so you can pick up where
+   you left off or adjust and re-calculate.
+4. A preview of the imported data is shown in the sidebar for reference.
+""")
+
 
 if __name__ == "__main__":
     main()
